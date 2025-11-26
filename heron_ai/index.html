@@ -1,63 +1,247 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Profit & Loss — Pixel-matched Prototype</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <title>Profit & Loss</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
   <div class="app-shell">
-    <header class="header-row">
-      <div>
-        <div class="page-title">Profit and Loss</div>
-      </div>
-      <div class="breadcrumb">Sandbox Inc. &nbsp;&middot;&nbsp; Profit and Loss</div>
-    </header>
-    <div class="toolbar-wrapper">
-      <div class="section-title">All Widgets</div>
-      <div class="toolbar-right">
-        <div class="toolbar">
-          <button class="btn">🔗 Share</button>
-          <button class="btn">⚑ Filter</button>
-          <button class="btn">⟳ Sync</button>
-          <button class="btn wide">⚙️ Summarize Dashboard</button>
-          <button class="btn">🗄️ Data Sources</button>
-          <button class="btn">⚙ Settings</button>
-          <button class="btn">✎ Edit</button>
-          <button class="btn">🗑 Delete</button>
+
+    <!-- Header -->
+    <div class="header-row heron-header">
+      <div class="header-left header-section ">
+        <div>
+          <h1 class="page-title">Profit and Loss</h1>
+        </div>
+
+        <div>
+          <p class="top-gray">Sandbox Inc. &gt; Profit and Loss</p>
         </div>
       </div>
     </div>
+
+   
+    <div id="tabs_component" class="tabs-wrapper">
+      <div class="tabs tabs-border">
+        <button class="tab tab-active">All Widgets</button>
+      </div>
+
+      <div class="tabs-underline" aria-hidden="true"></div>
+
+      <div class="tabs-actions">
+        <div class="actions-row">
+          <button class="btn btn-xs" title="Share" aria-label="Share"><i class="bi bi-share"></i><span>Share</span></button>
+          <button class="btn btn-xs" title="Filter" aria-label="Filter"><i class="bi bi-funnel"></i><span>Filter</span></button>
+          <button class="btn btn-xs" title="Sync" aria-label="Sync"><i class="bi bi-arrow-repeat"></i><span>Sync</span></button>
+          <button class="btn btn-xs btn-wide" title="Summarize Dashboard" aria-label="Summarize Dashboard"><i class="bi bi-stars"></i><span>Summarize Dashboard</span></button>
+          <button class="btn btn-xs btn-light" title="Data Sources" aria-label="Data Sources"><i class="bi bi-database"></i><span>Data Sources</span></button>
+          <button class="btn btn-xs btn-light" title="Settings" aria-label="Settings"><i class="bi bi-gear"></i><span>Settings</span></button>
+          <button class="btn btn-xs btn-light" title="Edit" aria-label="Edit"><i class="bi bi-pencil"></i><span>Edit</span></button>
+          <button class="btn btn-xs btn-light" title="Delete" aria-label="Delete"><i class="bi bi-trash"></i><span>Delete</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPIs -->
     <section class="kpi-grid" id="kpiGrid">
-      <div class="kpi-card"><div class="card-top"><div><div class="title">Net Profit</div><div class="value" id="netProfit">$2,370,000</div></div><div class="ellipsis">⋯</div></div><div class="delta" id="netProfitDelta">+ 23.7%</div></div>
-      <div class="kpi-card"><div class="card-top"><div><div class="title">Gross Profit</div><div class="value" id="grossProfit">$7,520,000</div></div><div class="ellipsis">⋯</div></div><div class="delta" id="grossProfitDelta">+ 75%</div></div>
-      <div class="kpi-card"><div class="card-top"><div><div class="title">Monthly Recurring Revenue</div><div class="value" id="mrr">$890,000</div></div><div class="ellipsis">⋯</div></div><div class="sub small-muted">Dec 2025</div></div>
-      <div class="kpi-card"><div class="card-top"><div><div class="title">COGS</div><div class="value" id="cogs">$2,510,000</div></div><div class="ellipsis">⋯</div></div><div class="sub small-muted">+ 25% (YTD)</div></div>
-      <div class="kpi-card"><div class="card-top"><div><div class="title">Gross Profit Margin</div><div class="value" id="grossMargin">68.0%</div></div><div class="ellipsis">⋯</div></div></div>
-      <div class="kpi-card"><div class="card-top"><div><div class="title">Expenses</div><div class="value" id="expenses">$4,510,000</div></div><div class="ellipsis">⋯</div></div></div>
-      <div class="kpi-card"><div class="card-top"><div><div class="title">Net Profit Margin</div><div class="value" id="netMargin">16.10%</div></div><div class="ellipsis">⋯</div></div></div>
+      <div class="kpi-card">
+        <div class="card-top">
+          <div>
+            <div class="title">Net Profit</div>
+            <div class="value" id="netProfit">$2,370,000</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="delta" id="netProfitDelta">+ 23.7%</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="card-top">
+          <div>
+            <div class="title">Gross Profit</div>
+            <div class="value" id="grossProfit">$7,520,000</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="delta" id="grossProfitDelta">+ 75%</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="card-top">
+          <div>
+            <div class="title">Monthly Recurring Revenue</div>
+            <div class="value" id="mrr">$890,000</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="sub small-muted">Dec 2025</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="card-top">
+          <div>
+            <div class="title">COGS</div>
+            <div class="value" id="cogs">$2,510,000</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="sub small-muted">+ 25% (YTD)</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="card-top">
+          <div>
+            <div class="title">Gross Profit Margin</div>
+            <div class="value" id="grossMargin">68.0%</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="card-top">
+          <div>
+            <div class="title">Expenses</div>
+            <div class="value" id="expenses">$4,510,000</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="card-top">
+          <div>
+            <div class="title">Net Profit Margin</div>
+            <div class="value" id="netMargin">16.10%</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+      </div>
+
       <div class="kpi-card placeholder" aria-hidden></div>
     </section>
+
+    <!-- Charts -->
     <section class="charts-grid">
-      <div class="chart-card"><div class="chart-header"><div><div class="chart-title">Net Income Over Time</div><div class="small-muted">Month</div></div><div class="ellipsis">⋯</div></div><div class="chart-content"><svg id="areaChart" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div></div>
-      <div class="chart-card"><div class="chart-header"><div><div class="chart-title">Revenue Over Time</div><div class="small-muted">Revenue ($ USD)</div></div><div class="ellipsis">⋯</div></div><div class="chart-content"><svg id="barChart" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div></div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Net Income Over Time</div>
+            <div class="small-muted">Month</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="chart-content"><svg id="areaChart" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Revenue Over Time</div>
+            <div class="small-muted">Revenue ($ USD)</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="chart-content"><svg id="barChart" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div>
+      </div>
     </section>
+
     <section class="top-charts-grid">
-      <div class="chart-card"><div class="chart-header"><div><div class="chart-title">COGS Over Time</div><div class="small-muted">COGS ($ USD)</div></div><div class="ellipsis">⋯</div></div><div class="chart-content"><svg id="cogsChart" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div></div>
-      <div class="chart-card"><div class="chart-header"><div><div class="chart-title">Gross Profit Over Time</div><div class="small-muted">Gross Profit ($ USD)</div></div><div class="ellipsis">⋯</div></div><div class="chart-content"><svg id="grossChart" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div></div>
-      <div class="chart-card"><div class="chart-header"><div><div class="chart-title">Operating Expenses Over Time</div><div class="small-muted">Expense Amount ($)</div></div><div class="ellipsis">⋯</div></div><div class="chart-content"><svg id="opexChart" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div></div>
-      <div class="chart-card"><div class="chart-header"><div><div class="chart-title">Total Income vs. Total Expenses</div><div class="small-muted">Amount ($)</div></div><div class="ellipsis">⋯</div></div><div class="chart-content"><svg id="totalCompare" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div></div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">COGS Over Time</div>
+            <div class="small-muted">COGS ($ USD)</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="chart-content"><svg id="cogsChart" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Gross Profit Over Time</div>
+            <div class="small-muted">Gross Profit ($ USD)</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="chart-content"><svg id="grossChart" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Operating Expenses Over Time</div>
+            <div class="small-muted">Expense Amount ($)</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="chart-content"><svg id="opexChart" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Total Income vs. Total Expenses</div>
+            <div class="small-muted">Amount ($)</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="chart-content"><svg id="totalCompare" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div>
+      </div>
     </section>
+
     <section class="lower-charts-grid">
-      <div class="chart-card"><div class="chart-header"><div><div class="chart-title">Tax Distribution</div><div class="small-muted">Amount ($)</div></div><div class="ellipsis">⋯</div></div><div class="chart-content"><svg id="taxPie" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="xMidYMid meet"></svg></div></div>
-      <div class="chart-card"><div class="chart-header"><div><div class="chart-title">Profit &amp; Loss by Department</div><div class="small-muted">Amount ($)</div></div><div class="ellipsis">⋯</div></div><div class="chart-content"><svg id="deptStack" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div></div>
-      <div class="chart-card"><div class="chart-header"><div><div class="chart-title">Expense Breakdown</div><div class="small-muted">Amount ($)</div></div><div class="ellipsis">⋯</div></div><div class="chart-content"><svg id="expensePie" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="xMidYMid meet"></svg></div></div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Tax Distribution</div>
+            <div class="small-muted">Amount ($)</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="chart-content"><svg id="taxPie" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="xMidYMid meet"></svg></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Profit &amp; Loss by Department</div>
+            <div class="small-muted">Amount ($)</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+        <div class="chart-content"><svg id="deptStack" class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="none"></svg></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Expense Breakdown</div>
+            <div class="small-muted">Amount ($)</div>
+          </div>
+          <div class="ellipsis">⋯</div>
+        </div>
+   
+        <div class="chart-content"><svg id="expensePie" class="chart-svg" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid meet"></svg></div>
+      </div>
+
       <div class="chart-card placeholder" aria-hidden></div>
     </section>
+
     <div class="tooltip" id="tooltip" style="display:none;"></div>
+
   </div>
+
   <script src="js/app.js"></script>
 </body>
+
 </html>
