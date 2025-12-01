@@ -1,0 +1,120 @@
+
+
+:root {
+  --ap-axis-font-size: 16px;   
+  --ap-legend-font-size: 16px;
+  --ap-legend-swatch-w: 20px;
+  --ap-legend-swatch-h: 12px;
+}
+
+/* layout */
+.tabs-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+
+.tabs {
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+
+.tabs-actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.tabs-actions .actions-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+
+/* tab styles */
+.tab { background: transparent; border: none; padding: 6px 10px; font-size: 16px; font-weight: 400; color: #111827; cursor: pointer; }
+.tab-active { color: #111827; background: transparent; border-bottom: 2px solid var(--accent); padding-bottom:4px; border-radius:4px 4px 0 0; }
+
+/* titles */
+.page-title { font-weight: 400; }
+.chart-title { font-weight: 400; color: var(--muted-strong); }
+
+/* KPI value */
+.kpi-card .value { font-weight: 800; font-size: 28px; }
+
+/* charts layout */
+.charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 12px; }
+.chart-card { min-height: 320px; padding: 18px; display:flex; flex-direction:column; }
+
+/* chart content spacing */
+.chart-content { padding: 18px 6px 34px 6px; flex:1; }
+
+.search-input {
+  width: 320px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.04);
+  font-size: 14px;
+  color: var(--muted-strong, #374151);
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(16,24,40,0.03);
+}
+
+
+.plain-table thead th {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 14px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  text-align: left;
+}
+.plain-table tbody tr td {
+  padding: 14px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.02);
+  color: var(--muted-strong);
+  vertical-align: middle;
+}
+.plain-table tbody tr td:first-child { text-align:center; color:var(--muted-strong); font-weight:600; }
+
+#apTable tbody tr td:last-child { text-align:right; font-weight:800; color:var(--muted-strong); }
+
+.chart-svg text { font-size: var(--ap-axis-font-size); fill: #374151; }
+
+
+.page-pill {
+  padding:0;
+  width:34px;
+  height:34px;
+  min-width:34px;
+  border-radius:6px;
+  border:1px solid rgba(0,0,0,0.12);
+  background:#fff;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+}
+.page-pill.nav { color: #6b7280; } /* arrows */
+.page-pill.active {
+  background: var(--accent);
+  color:#fff;
+  border-color: var(--accent);
+  box-shadow: 0 2px 6px rgba(124,58,237,0.15);
+}
+
+
+.app-shell { padding-bottom: 48px; }
+
+/* responsive */
+@media (max-width:1100px){
+  .search-input { width: 100%; }
+  .charts-grid { gap: 20px; }
+  .chart-card { min-height: 300px; }
+}
+@media (max-width:720px){
+  .charts-grid { grid-template-columns: 1fr; }
+  .chart-card { min-height: 260px; }
+}

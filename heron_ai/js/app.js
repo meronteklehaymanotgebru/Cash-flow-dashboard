@@ -1,4 +1,3 @@
-
 (function () {
   const ARR = 5_000_000;
   const GROSS_MARGIN = 0.68;
@@ -87,7 +86,6 @@
   if (el('expenses')) el('expenses').textContent = fmt(totalOpex);
   if (el('netMargin')) el('netMargin').textContent = (NET_MARGIN*100).toFixed(2) + '%';
 
- 
   function computeVisibleIndices(n, maxLabels = 6) {
     if (n <= maxLabels) {
       return Array.from({length:n}, (_,i)=>i);
@@ -95,7 +93,7 @@
     const step = Math.ceil(n / maxLabels);
     const inds = [];
     for (let i = 0; i < n; i += step) inds.push(i);
-    if (inds[inds.length - 1] !== n - 1) inds.push(n - 1); 
+    if (inds[inds.length - 1] !== n - 1) inds.push(n - 1);
     return inds;
   }
 
@@ -126,7 +124,6 @@
       minor.setAttribute('stroke-width', '1');
       svg.appendChild(minor);
 
-  
       if (visibleSet.has(i)) {
         const major = document.createElementNS('http://www.w3.org/2000/svg','line');
         major.setAttribute('x1', String(x));
@@ -141,7 +138,7 @@
   }
 
   function addXLabel(svg, x, H, P, txt) {
-    const y = H - Math.max(18, Math.floor(P.bottom / 2)); 
+    const y = H - Math.max(18, Math.floor(P.bottom / 2));
     return createText(svg, x, y, txt, { size: '16', fill: '#374151', anchor: 'middle' });
   }
 
@@ -222,7 +219,7 @@
 
     (function(){
       const svg = el('areaChart'); if(!svg) return;
-      const W = 800, H = 360, P = { left: 120, right: 20, top: 28, bottom: 64 }; 
+      const W = 800, H = 360, P = { left: 120, right: 20, top: 28, bottom: 64 };
       svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
       const NET = monthly.map(m=>m.net);
       const maxN = Math.max(...NET) * 1.04;
@@ -259,7 +256,6 @@
       line.setAttribute('stroke-width','2');
       svg.appendChild(line);
 
-   
       const visible = computeVisibleIndices(MONTHS.length, 6);
       const visibleSet = new Set(visible);
 
@@ -307,7 +303,7 @@
         rect.setAttribute('y', String(y(v)));
         rect.setAttribute('width', String(colW));
         rect.setAttribute('height', String(height));
-        rect.setAttribute('rx','6');
+        rect.setAttribute('rx','0'); // make edges sharp
         rect.setAttribute('fill', BAR_COLOR);
         rect.style.cursor='pointer';
         rect.addEventListener('mouseenter', (ev)=>{ tooltip.style.display='block'; tooltip.innerHTML = `<div style="display:flex;align-items:center;"><span class="dot"></span><strong style="color:#111827;margin-left:8px">${MONTHS[i]}</strong></div><div style="color:#111827;margin-top:6px">${fmt(v)}</div>`; });
@@ -348,7 +344,7 @@
         rect.setAttribute('y', String(y(m.cogs)));
         rect.setAttribute('width', String(colW));
         rect.setAttribute('height', String(height));
-        rect.setAttribute('rx','6');
+        rect.setAttribute('rx','0'); // sharp edges
         rect.setAttribute('fill', BAR_COLOR);
         rect.addEventListener('mouseenter', ()=>{ tooltip.style.display='block'; tooltip.innerHTML = `<strong style="color:#111827">${m.date}</strong><div style="color:#111827">COGS: ${fmt(m.cogs)}</div>`; });
         rect.addEventListener('mousemove', (ev)=>{ tooltip.style.left = ev.clientX+12+'px'; tooltip.style.top = ev.clientY+12+'px'; });
@@ -425,7 +421,7 @@
           const h = (cat.value/omax)*innerH;
           const yTop = P.top + innerH - ((stack + cat.value)/omax)*innerH;
           const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
-          rect.setAttribute('x', String(cx - colW/2)); rect.setAttribute('y', String(yTop)); rect.setAttribute('width', String(colW)); rect.setAttribute('height', String(h)); rect.setAttribute('rx','2'); rect.setAttribute('fill', cat.color);
+          rect.setAttribute('x', String(cx - colW/2)); rect.setAttribute('y', String(yTop)); rect.setAttribute('width', String(colW)); rect.setAttribute('height', String(h)); rect.setAttribute('rx','0'); rect.setAttribute('fill', cat.color);
           rect.addEventListener('mouseenter', ()=>{ tooltip.style.display='block'; tooltip.innerHTML = `<strong style="color:#111827">${MONTHS[i]}</strong><div style="color:#111827">${cat.key}: ${fmt(cat.value)}</div>`; });
           rect.addEventListener('mousemove', (ev)=>{ tooltip.style.left = ev.clientX+12+'px'; tooltip.style.top = ev.clientY+12+'px'; });
           rect.addEventListener('mouseleave', ()=> tooltip.style.display='none');
@@ -453,7 +449,7 @@
       values.forEach((val,i)=>{
         const cx = P.left + (i + 0.5) * (innerW / values.length);
         const x = cx - colW/2; const h = (val.v / maxv) * innerH; const y = P.top + innerH - h;
-        const rect = document.createElementNS('http://www.w3.org/2000/svg','rect'); rect.setAttribute('x', String(x)); rect.setAttribute('y', String(y)); rect.setAttribute('width', String(colW)); rect.setAttribute('height', String(Math.max(2,h))); rect.setAttribute('rx','6'); rect.setAttribute('fill', val.c);
+        const rect = document.createElementNS('http://www.w3.org/2000/svg','rect'); rect.setAttribute('x', String(x)); rect.setAttribute('y', String(y)); rect.setAttribute('width', String(colW)); rect.setAttribute('height', String(Math.max(2,h))); rect.setAttribute('rx','0'); rect.setAttribute('fill', val.c);
         rect.addEventListener('mouseenter', ()=>{ tooltip.style.display='block'; tooltip.innerHTML = `<strong style="color:#111827">${val.k}</strong><div style="color:#111827">${fmt(val.v)}</div>`; });
         rect.addEventListener('mousemove', (ev)=>{ tooltip.style.left = ev.clientX+12+'px'; tooltip.style.top = ev.clientY+12+'px'; });
         rect.addEventListener('mouseleave', ()=> tooltip.style.display='none');
@@ -538,53 +534,83 @@
         const expenseH = (d.expenses / maxv) * availableHeight;
         const yIncome = P.top + availableHeight - incomeH;
         const yExpenses = yIncome - expenseH;
-        const r1 = document.createElementNS('http://www.w3.org/2000/svg','rect'); r1.setAttribute('x',String(x)); r1.setAttribute('y',String(yIncome)); r1.setAttribute('width',String(colW)); r1.setAttribute('height',String(incomeH)); r1.setAttribute('rx','6'); r1.setAttribute('fill',DEPT_INCOME_COLOR);
-        const r2 = document.createElementNS('http://www.w3.org/2000/svg','rect'); r2.setAttribute('x',String(x)); r2.setAttribute('y',String(yExpenses)); r2.setAttribute('width',String(colW)); r2.setAttribute('height',String(expenseH)); r2.setAttribute('rx','6'); r2.setAttribute('fill',DEPT_EXPENSE_COLOR);
+        const r1 = document.createElementNS('http://www.w3.org/2000/svg','rect'); r1.setAttribute('x',String(x)); r1.setAttribute('y',String(yIncome)); r1.setAttribute('width',String(colW)); r1.setAttribute('height',String(incomeH)); r1.setAttribute('rx','0'); r1.setAttribute('fill',DEPT_INCOME_COLOR);
+        const r2 = document.createElementNS('http://www.w3.org/2000/svg','rect'); r2.setAttribute('x',String(x)); r2.setAttribute('y',String(yExpenses)); r2.setAttribute('width',String(colW)); r2.setAttribute('height',String(expenseH)); r2.setAttribute('rx','0'); r2.setAttribute('fill',DEPT_EXPENSE_COLOR);
         [r1,r2].forEach(rr=>{ rr.addEventListener('mouseenter', ()=>{ tooltip.style.display='block'; tooltip.innerHTML = `<strong style="color:#111827">${d.dept}</strong><div style="color:${DEPT_INCOME_COLOR}">Income: ${fmt(d.income)}</div><div style="color:${DEPT_EXPENSE_COLOR}">Expenses: ${fmt(d.expenses)}</div>`; }); rr.addEventListener('mousemove', (ev)=>{ tooltip.style.left = ev.clientX+12+'px'; tooltip.style.top = ev.clientY+12+'px'; }); rr.addEventListener('mouseleave', ()=> tooltip.style.display='none'); svg.appendChild(rr); });
         createText(svg, cx, H - 8, d.dept, { size: '16', fill: '#374151', anchor: 'middle' });
       });
     })();
 
-    // expense pie
+
     (function(){
       const svg = el('expensePie'); if(!svg) return;
+      svg.innerHTML = '';
       const W = 1000, H = 520;
       svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-      const cx = W/2, cy = H/2, r = Math.min(W,H)*0.30;
-      const total = expenseBreakdown.reduce((s,d)=>s+d.value,0);
-      let angle = -Math.PI/2;
 
+      const pieR = Math.min(W,H) * 0.26;
+      const cx = Math.round(W * 0.5) - 140;
+      const cy = Math.round(H * 0.5);
+      const total = expenseBreakdown.reduce((s,d)=>s+d.value,0);
       if (!total) {
-        createText(svg, cx, cy, 'No data', { size: '16', fill: '#9ca3af', anchor: 'middle' });
+        createText(svg, cx, cy, 'No data', { size: '18', fill: '#9ca3af', anchor: 'middle' });
         return;
       }
 
-      expenseBreakdown.forEach((d, idx)=>{
+      const usedLabelYs = [];
+
+      let angle = -Math.PI/2;
+      expenseBreakdown.forEach((d, idx) => {
         const portion = d.value / total;
         const next = angle + portion * Math.PI * 2;
-        const x1 = cx + r * Math.cos(angle), y1 = cy + r * Math.sin(angle);
-        const x2 = cx + r * Math.cos(next), y2 = cy + r * Math.sin(next);
+
+        // slice path
+        const x1 = cx + pieR * Math.cos(angle), y1 = cy + pieR * Math.sin(angle);
+        const x2 = cx + pieR * Math.cos(next), y2 = cy + pieR * Math.sin(next);
         const large = (next - angle) > Math.PI ? 1 : 0;
         const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-        const dAttr = `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} Z`;
-        path.setAttribute('d', dAttr); path.setAttribute('fill', d.color); path.setAttribute('stroke','#fff'); path.setAttribute('stroke-width','0.6');
+        const dAttr = `M ${cx} ${cy} L ${x1} ${y1} A ${pieR} ${pieR} 0 ${large} 1 ${x2} ${y2} Z`;
+        path.setAttribute('d', dAttr);
+        path.setAttribute('fill', d.color);
+        path.setAttribute('stroke','#fff');
+        path.setAttribute('stroke-width','0.6');
         svg.appendChild(path);
 
-        const mid = (angle + next)/2;
-        const lx = cx + (r + 34) * Math.cos(mid);
-        const ly = cy + (r + 34) * Math.sin(mid);
+        // leader line + label for every slice
+        const mid = (angle + next) / 2;
+        const sx = cx + pieR * Math.cos(mid);
+        const sy = cy + pieR * Math.sin(mid);
+        const mx = cx + (pieR + 18) * Math.cos(mid); // mid point
+        const my = cy + (pieR + 18) * Math.sin(mid);
+        const ex = cx + (pieR + 86) * Math.cos(mid); // end (horizontal offset)
+        const ey = cy + (pieR + 86) * Math.sin(mid);
 
-        const sx = cx + r * Math.cos(mid);
-        const sy = cy + r * Math.sin(mid);
-        const anchorX = lx + (lx > cx ? 10 : -10);
+  
+        const poly = document.createElementNS('http://www.w3.org/2000/svg','polyline');
+     
+        const horizontalX = ex + (ex > cx ? 6 : -6);
+        poly.setAttribute('points', `${sx},${sy} ${mx},${my} ${horizontalX},${ey}`);
+        poly.setAttribute('stroke','#6b7280');
+        poly.setAttribute('fill','none');
+        poly.setAttribute('stroke-width','1');
+        svg.appendChild(poly);
 
-        const line = document.createElementNS('http://www.w3.org/2000/svg','polyline');
-        line.setAttribute('points', `${sx},${sy} ${lx},${ly} ${anchorX},${ly}`);
-        line.setAttribute('stroke','#6b7280'); line.setAttribute('fill','none'); line.setAttribute('opacity','0.9');
-        svg.appendChild(line);
+  
+        const labelX = horizontalX + (ex > cx ? 6 : -6);
+        let labelY = ey + 6;
 
-        const shortLabel = d.label.length > 30 ? d.label.slice(0,28) + '…' : d.label;
-        createText(svg, anchorX, ly + 6, `${shortLabel}: ${d.value.toLocaleString()}`, { size: '16', fill: '#111827', anchor: lx > cx ? 'start' : 'end' });
+     
+        const minSpacing = 20;
+        let tries = 0;
+        while (usedLabelYs.some(yPos => Math.abs(yPos - labelY) < minSpacing) && tries < 20) {
+  
+          labelY += (tries % 2 === 0) ? -minSpacing : minSpacing;
+          tries++;
+        }
+        usedLabelYs.push(labelY);
+
+        const shortLabel = d.label;
+        createText(svg, labelX, labelY, `${shortLabel}: ${d.value.toLocaleString()}`, { size: '18', fill: '#111827', anchor: ex > cx ? 'start' : 'end' });
 
         angle = next;
       });
