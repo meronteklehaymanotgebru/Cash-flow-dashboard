@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HeronAI — Demo</title>
+  <meta name="description" content="Watch a quick walkthrough showing how to upload your data, generate dashboards instantly, and get actionable insights." />
+  <link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+  <main class="demo-container" id="main" aria-labelledby="demo-hero-title">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="demo-hero-title">
+      <h1 id="demo-hero-title" class="hero-title gradient-text">
+        Watch this quick demo &amp; see exactly how HeronAI works
+      </h1>
+
+      <p class="hero-sub">
+        A 3-minute walkthrough showing how to upload your data, generate dashboards instantly, and get actionable insights.
+      </p>
+
+      <div class="video-area">
+        <div id="video-wrapper" class="video-wrapper" aria-live="polite">
+          <!-- EMBEDDED YOUTUBE IFRAME (native YouTube controls available) -->
+          <iframe
+            id="youtube-iframe"
+            class="video-frame"
+            src="https://www.youtube.com/embed/E8T3PSeOKYs?rel=0&modestbranding=1&autoplay=1&mute=1&controls=1"
+            title="HeronAI demo"
+            frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="hero-ctas" role="region" aria-label="Primary actions">
+        <button id="book-call" class="btn primary" data-calendly="https://calendly.com/d/cn2h-nsy-5mg/heronai-demo">
+          Book a Call
+        </button>
+
+        <button id="start-dashboard" class="btn secondary" data-dashboard="https://app.heronai.com/">
+          Start Your First Dashboard
+        </button>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS (title/subtitle full width; timeline below) -->
+    <section id="how" class="how-section" aria-labelledby="how-title">
+      <div class="how-header">
+        <div class="kicker">How it works</div>
+        <h2 id="how-title" class="how-heading">From your data to dashboards in minutes</h2>
+        <p class="how-intro">Follow the flow: upload your files, dashboards generate automatically, receive actionable insights.</p>
+      </div>
+
+      <div class="timeline-wrap">
+        <svg id="timeline-svg" class="timeline-svg" viewBox="0 0 1200 240" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="lg" x1="0" x2="1">
+              <stop offset="0%" stop-color="#FF8B66"/>
+              <stop offset="50%" stop-color="#FFBD6B"/>
+              <stop offset="100%" stop-color="#BB52FF"/>
+            </linearGradient>
+            <linearGradient id="lg-faint" x1="0" x2="1">
+              <stop offset="0%" stop-color="rgba(187,82,255,0.08)"/>
+              <stop offset="100%" stop-color="rgba(187,82,255,0.02)"/>
+            </linearGradient>
+          </defs>
+
+          <path id="timeline-path"
+            d="M40 170 C220 40, 380 290, 560 170 C740 50, 900 290, 1160 170"
+            stroke="url(#lg)"
+            stroke-width="8"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+
+          <path id="timeline-path-faint"
+            d="M40 170 C220 40, 380 290, 560 170 C740 50, 900 290, 1160 170"
+            stroke="url(#lg-faint)"
+            stroke-width="40"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            opacity="0.36"/>
+          <circle id="moving-dot" r="10" fill="#fff" stroke="#BB52FF" stroke-width="3" style="opacity:0; transform-origin:center;" />
+        </svg>
+
+        <div id="timeline-cards" class="timeline-cards" role="list">
+          <article class="how-card" data-node="1" tabindex="0" role="listitem" aria-label="Upload Excel or CSV">
+            <div class="card-inner">
+              <h4>Upload Excel / CSV</h4>
+              <p>Drag &amp; drop or upload spreadsheets — HeronAI maps fields automatically.</p>
+            </div>
+          </article>
+
+          <article class="how-card" data-node="1" tabindex="0" role="listitem" aria-label="Connect QuickBooks">
+            <div class="card-inner">
+              <h4>Connect QuickBooks</h4>
+              <p>Securely sync invoices, bills, and transactions for automated insights.</p>
+            </div>
+          </article>
+
+          <article class="how-card" data-node="2" tabindex="0" role="listitem" aria-label="Automatic Dashboards">
+            <div class="card-inner">
+              <h4>Automatic Dashboards</h4>
+              <p>Dashboards are generated automatically and tailored to your KPIs.</p>
+            </div>
+          </article>
+
+          <article class="how-card accent" data-node="2" tabindex="0" role="listitem" aria-label="Insights and recommendations">
+            <div class="card-inner">
+              <h4>Insights &amp; Recommendations</h4>
+              <p>Actionable insights appear beside charts to help you act quickly.</p>
+            </div>
+          </article>
+
+          <article class="how-card" data-node="3" tabindex="0" role="listitem" aria-label="Customize and share dashboards">
+            <div class="card-inner">
+              <h4>Customize &amp; Share</h4>
+              <p>Tweak layouts, adjust visualizations, and share dashboards with your team.</p>
+            </div>
+          </article>
+
+          <article class="how-card accent" data-node="3" tabindex="0" role="listitem" aria-label="Request custom dashboards">
+            <div class="card-inner">
+              <h4>Request Custom Dashboards</h4>
+              <p>Need advanced reports? Our analysts can build custom dashboards for you.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (quotes only, no logos) -->
+    <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title">
+      <h3 id="testimonials-title" class="section-heading gradient-text">Real stories. Empowered by Data. Inspired by Results.</h3>
+
+      <div class="testimonial-wrap">
+        <div class="carousel" id="carousel">
+          <div class="carousel-track" id="carousel-track" role="list">
+            <figure class="testimonial" data-index="0" role="listitem">
+              <div class="avatar">DB</div>
+              <div class="quote"><blockquote>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</blockquote><figcaption>— Client Name, Company</figcaption></div>
+            </figure>
+
+            <figure class="testimonial" data-index="1" role="listitem" aria-hidden="true">
+              <div class="avatar">RC</div>
+              <div class="quote"><blockquote>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."</blockquote><figcaption>— Client Name, Company</figcaption></div>
+            </figure>
+
+            <figure class="testimonial" data-index="2" role="listitem" aria-hidden="true">
+              <div class="avatar">SA</div>
+              <div class="quote"><blockquote>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</blockquote><figcaption>— Client Name, Company</figcaption></div>
+            </figure>
+          </div>
+
+          <div class="carousel-controls">
+            <button id="carousel-prev" class="carousel-btn" aria-label="Previous testimonial">‹</button>
+            <div id="carousel-dots" class="dots" role="tablist" aria-label="Testimonial dots"></div>
+            <button id="carousel-next" class="carousel-btn" aria-label="Next testimonial">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <section class="footer-cta" aria-labelledby="footer-cta-heading">
+      <h4 id="footer-cta-heading">Ready to get started?</h4>
+      <div class="footer-actions">
+        <button id="start-footer" class="btn secondary" data-dashboard="https://app.heronai.com/">Start Dashboard</button>
+        <button id="book-footer" class="btn primary" data-calendly="https://calendly.com/d/cn2h-nsy-5mg/heronai-demo">Book Call</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="demo.js" defer></script>
+</body>
+</html>

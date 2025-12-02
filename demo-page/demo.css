@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+:root{
+  --bg-1: #050306;
+  --bg-2: #0f0710;
+  --text: #eae6eb;
+  --muted: #bdb3bf;
+  --accent-3: #BB52FF;
+
+  --container: 1180px;
+  --card-width: 320px;
+  --card-gap: 36px;
+  --card-h-gap: 48px;
+
+  --top-lift-base: 95px;
+  --bottom-gap-base: 72px;
+
+  /* Modular scale - base font size and scale ratio */
+  --fs-base: 16px;
+  --scale-ratio: 1.25;
+
+  font-family: 'Roboto', Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Utility: proportional sizes via clamp for responsive hierarchy */
+:root{
+  --h1-size: clamp(32px, 4.2vw, 56px);   /* hero / page title */
+  --h2-size: clamp(22px, 2.6vw, 36px);   /* section headings */
+  --h3-size: clamp(18px, 2.0vw, 28px);   /* subsection headings */
+  --body-size: clamp(15px, 1.3vw, 18px); /* body / paragraph */
+  --card-title-size: clamp(16px, 1.2vw, 19px);
+  --card-body-size: clamp(14px, 1.1vw, 16px);
+  --btn-size: clamp(14px, 1.0vw, 16px);
+  --meta-size: clamp(12px, 0.9vw, 14px);
+  --testimonial-title-size: clamp(22px, 2.4vw, 34px);
+  --testimonial-quote-size: clamp(16px, 1.4vw, 19px);
+}
+
+/* Generic resets */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);-webkit-font-smoothing:antialiased}
+.demo-container{max-width:var(--container);margin:0 auto;padding:88px 24px 88px}
+
+/* gradient text util used for hero and testimonial header */
+.gradient-text{
+  background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(187,82,255,0.96) 55%, rgba(255,184,107,0.9));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 6px 16px rgba(0,0,0,0.55);
+}
+
+/* HERO */
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px}
+.hero-title{
+  font-size:var(--h1-size);
+  line-height:1.02;margin:0;font-weight:700;max-width:100%;width:100%;
+}
+.hero-sub{
+  color:var(--muted);max-width:980px;margin:0;
+  font-size:var(--body-size);padding-bottom:18px;
+}
+
+/* VIDEO */
+.video-area{width:100%;max-width:980px;display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:18px;margin-bottom:24px}
+.video-wrapper{position:relative;width:100%;aspect-ratio:16/9;max-width:980px;border-radius:12px;overflow:hidden;background:transparent;box-shadow:0 30px 60px rgba(2,2,8,0.6);z-index:5}
+.video-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.video-poster{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;border-radius:12px}
+.poster-img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(0.96) saturate(1.03)}
+.play-overlay{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.play-label{margin-top:10px;background:rgba(0,0,0,0.44);color:#fff;padding:8px 14px;border-radius:999px;font-weight:600;font-size:var(--btn-size);backdrop-filter: blur(4px)}
+
+/* CTAs: moved closer to video and scaled button text proportionally */
+.hero-ctas{display:flex;gap:12px;justify-content:center;margin-top:6px;margin-bottom:18px}
+.btn{padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700;font-size:var(--btn-size);display:inline-flex;align-items:center;justify-content:center}
+.btn.primary{background:linear-gradient(90deg,var(--accent-3),#7E3AF2);color:#050006;box-shadow:0 14px 36px rgba(123,58,255,0.12);transition:transform .18s ease}
+.btn.primary:hover{transform:translateY(-3px);box-shadow:0 22px 52px rgba(123,58,255,0.16)}
+.btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+
+/* HOW IT WORKS header + spacing */
+.how-section{margin-top:48px}
+.how-header{max-width:100%;text-align:left;margin-bottom:40px}
+.how-header .kicker{font-size:var(--meta-size);color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.how-heading{font-size:var(--h2-size);margin:0 0 8px}
+.how-intro{color:var(--muted);margin:0 0 0;max-width:900px;padding-bottom:36px;font-size:var(--body-size)}
+
+/* timeline + cards */
+.timeline-wrap{position:relative;z-index:1;background:transparent;padding:12px 0}
+@media (max-width:1024px){ .timeline-svg{display:none} }
+.timeline-svg{width:100%;height:320px;overflow:visible;display:block;margin-bottom:8px;cursor:pointer}
+#timeline-path{stroke-dasharray:10000;stroke-dashoffset:10000;transition:stroke-dashoffset 1.6s cubic-bezier(.2,.9,.2,1)}
+#timeline-path-faint{opacity:0.36}
+#moving-dot{transition:transform 160ms linear;opacity:0;pointer-events:none}
+
+/* cards container */
+.timeline-cards{position:relative;min-height:320px;height:auto;margin-top:8px;margin-bottom:24px}
+@media (max-width:1200px){ .timeline-cards{min-height:420px} }
+@media (max-width:960px){ .timeline-cards{position:static;height:auto;margin-top:18px;display:grid;grid-template-columns:1fr;gap:18px} }
+
+/* card style - proportional sizing */
+.how-card{
+  position:absolute;
+  width:var(--card-width);
+  padding:14px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.01);
+  color:var(--text);
+  border:1px solid rgba(255,255,255,0.04);
+  border-left:6px solid var(--accent-3);
+  transition:background-color .22s ease, transform .18s ease, box-shadow .18s ease;
+  cursor:default;
+  outline:none;
+}
+.how-card .card-inner h4{margin:0 0 8px;font-size:var(--card-title-size);font-weight:600}
+.how-card .card-inner p{margin:0;color:var(--muted);font-size:var(--card-body-size)}
+.how-card:focus, .how-card:hover { background: linear-gradient(180deg, rgba(187,82,255,0.08), rgba(255,255,255,0.02)); transform: translateY(-6px); box-shadow: 0 14px 36px rgba(2,2,8,0.18); color:#fff; }
+.how-card.active { background: linear-gradient(90deg, rgba(187,82,255,0.12), rgba(255,184,107,0.04)); transform: translateY(-8px) scale(1.01); box-shadow: 0 22px 56px rgba(11,10,20,0.32); }
+
+/* stacked cards on very small screens */
+@media (max-width:520px){
+  :root{ --card-width: 100%; }
+  .how-card{position:static;width:100%;border-left:6px solid var(--accent-3);}
+}
+
+/* TESTIMONIALS: proportional sizes (smaller height) */
+.testimonials{margin-top:24px;margin-bottom:24px}
+.section-heading{font-size:var(--testimonial-title-size);margin:0 0 10px}
+.testimonial-wrap{max-width:760px;margin:0 auto;padding:12px}
+.carousel-track{position:relative;min-height:120px}
+.testimonial{
+  position:absolute;
+  inset:0;
+  padding:18px 16px;
+  border-radius:12px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 12px 36px rgba(2,2,8,0.56);
+  transition:opacity .32s,transform .32s;
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+.testimonial[aria-hidden="true"]{opacity:0;transform:translateY(8px);pointer-events:none}
+.testimonial .avatar{flex:0 0 48px;height:48px;width:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent-3),#FFBD6B);display:flex;align-items:center;justify-content:center;color:#050006;font-weight:700;font-size:var(--testimonial-quote-size);box-shadow:0 6px 18px rgba(11,10,20,0.35)}
+.testimonial blockquote{margin:0 0 6px;font-style:italic;font-size:var(--testimonial-quote-size);line-height:1.34}
+.testimonial figcaption{font-weight:700;color:var(--muted);font-size:16px}
+
+/* controls */
+.carousel-controls{display:flex;gap:12px;align-items:center;margin-top:10px;justify-content:center}
+.carousel-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);height:36px;width:36px;border-radius:10px;color:var(--text);cursor:pointer}
+.dots{display:flex;gap:8px}
+.dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,0.06);border:none;cursor:pointer}
+.dot.active{background:var(--accent-3)}
+
+/* footer */
+.footer-cta{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.footer-actions{display:flex;gap:12px}
+
+/* responsive tweaks */
+@media (max-width:960px){
+  .how-header{padding:0 8px;margin-bottom:18px}
+  .timeline-svg{height:300px}
+  .timeline-cards{height:auto}
+  .how-card{position:static;width:auto;padding:14px}
+}
+@media (max-width:540px){
+  .hero-title{font-size:31px}
+  .demo-container{padding:64px 16px 56px}
+}
